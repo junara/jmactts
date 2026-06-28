@@ -11,36 +11,39 @@ description: jmactts を 5 分で使い始める
 jmactts こんにちは 世界
 ```
 
+`say` の既定ボイス (システム設定で選んだもの) で読み上げられます。
+
 ## 言語を指定して読み上げ
 
-`-L` で言語/国コードを指定すると、その言語のプライマリボイスが自動選択されます。
+`-L` に言語または国コードを渡すと、その言語のプライマリボイスが自動で選ばれます。
 
 ```bash
-jmactts -L ja Hello は日本語ボイスで読まれます
-jmactts -L en Hello will be read in English
+jmactts -L ja こんにちは            # Kyoko で読み上げ
+jmactts -L en "Hello, world"        # Samantha で読み上げ
+jmactts -L en_GB "Good evening"     # Daniel で読み上げ (イギリス英語)
 ```
 
 ## ファイル出力
 
-拡張子から音声フォーマットを自動判定します。
+`-o` の拡張子から音声フォーマットが自動判定されます。
 
 ```bash
 jmactts -L ja -o hello.m4a こんにちは
-jmactts -L ja -o hello.mp3 MP3 でも保存できます
+jmactts -L ja -o hello.mp3 MP3 でも保存できます   # 要 ffmpeg
 ```
 
-## クリップボード読み上げ
+## クリップボードを読み上げ
 
-`pbcopy` でコピーしたテキストを即座に再生:
+ブラウザでコピーした記事をそのまま音声化:
 
 ```bash
-pbpaste | jmactts        # パイプ経由
-jmactts -c               # フラグでも同じ
+jmactts -c             # フラグで指定
+pbpaste | jmactts      # パイプ経由でも同じ
 ```
 
 ## 次のステップ
 
-- [入力ソース](/jmactts/ja/usage/input/) — 引数 / ファイル / 標準入力 / クリップボード
-- [ボイス選択](/jmactts/ja/usage/voice/) — `-v` と `-L` の使い分け
-- [出力フォーマット](/jmactts/ja/usage/output/) — AIFF / WAV / M4A / MP3
-- [フラグ一覧](/jmactts/ja/reference/flags/) — すべてのフラグ
+- [入力ソース](/jmactts/ja/usage/input/) — 引数 / ファイル / 標準入力 / クリップボードの使い分け
+- [ボイス選択](/jmactts/ja/usage/voice/) — `-v` と `-L` の使い分けと照合ロジック
+- [出力フォーマット](/jmactts/ja/usage/output/) — AIFF / WAV / M4A / AAC / MP3 の使い分け
+- [フラグ一覧](/jmactts/ja/reference/flags/) — すべてのフラグと終了コード

@@ -3,7 +3,7 @@ title: jmactts
 description: macOS の say コマンドをラップした、多言語対応のテキスト読み上げ CLI
 template: splash
 hero:
-  tagline: ターミナルから日本語を含む 30 以上の言語を読み上げる macOS 向け CLI
+  tagline: 日本語を含む 39 言語に対応した、ターミナル向け macOS テキスト読み上げ CLI
   actions:
     - text: はじめる
       link: /jmactts/ja/getting-started/installation/
@@ -20,8 +20,8 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
   <Card title="多様な入力" icon="document">
     引数 / ファイル / 標準入力 / クリップボード (`pbpaste`) のいずれにも対応
   </Card>
-  <Card title="自動ボイス選択" icon="translate">
-    `-L ja` / `-L JP` / `-L ja_JP` で言語・国コードからボイスを自動選択
+  <Card title="ボイス自動選択" icon="translate">
+    `-L ja` / `-L JP` / `-L ja_JP` で国・言語コードからプライマリボイスを選ぶ
   </Card>
   <Card title="多彩な出力" icon="setting">
     AIFF / WAV / M4A / AAC / MP3 (要 `ffmpeg`) を拡張子で自動判定
