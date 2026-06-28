@@ -1,0 +1,42 @@
+version: 2
+
+builds:
+  - main: .
+    binary: jmactts
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X github.com/junara/jmactts/internal/adapter/cli.Version={{.Version}}
+
+archives:
+  - formats:
+      - tar.gz
+
+homebrew_casks:
+  - name: jmactts
+    binaries:
+      - jmactts
+    repository:
+      owner: junara
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    homepage: "https://github.com/junara/jmactts"
+    description: "macOS multilingual text-to-speech CLI wrapping the `say` command"
+    license: "MIT"
+    url:
+      verified: "github.com/junara/jmactts/"
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
