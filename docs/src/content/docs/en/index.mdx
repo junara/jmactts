@@ -1,0 +1,32 @@
+---
+title: jmactts
+description: A multilingual text-to-speech CLI for macOS, wrapping the `say` command
+template: splash
+hero:
+  tagline: A macOS CLI that reads 30+ languages from your terminal, including Japanese
+  actions:
+    - text: Get started
+      link: /jmactts/en/getting-started/installation/
+      icon: right-arrow
+    - text: GitHub
+      link: https://github.com/junara/jmactts
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="Versatile input" icon="document">
+    Read from arguments, files, stdin, or the macOS clipboard (`pbpaste`)
+  </Card>
+  <Card title="Auto voice pick" icon="translate">
+    `-L ja` / `-L JP` / `-L ja_JP` selects a voice by language or country code
+  </Card>
+  <Card title="Many formats" icon="setting">
+    AIFF / WAV / M4A / AAC / MP3 (via `ffmpeg`) detected from the file extension
+  </Card>
+  <Card title="Long text + Ctrl-C" icon="rocket">
+    Splits texts over 1500 runes on sentence boundaries; `Ctrl-C` stops instantly
+  </Card>
+</CardGrid>
