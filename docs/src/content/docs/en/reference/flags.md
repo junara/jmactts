@@ -1,14 +1,14 @@
 ---
 title: Flags
-description: Every jmactts flag in one place
+description: Every jmactts flag, exit code, and external dependency
 ---
 
-## Reference
+## Flags
 
 | short | long | Description |
 |:--|:--|:--|
 | `-v` | `--voice` | Voice name (e.g. `Kyoko` / `Samantha` / `Daniel`) |
-| `-L` | `--lang` | Language/country code; auto-picks a voice when `-v` is absent |
+| `-L` | `--lang` | Language/country code; auto-picks the primary voice when `-v` is absent |
 | `-r` | `--rate` | Speech rate (words per minute) |
 | `-f` | `--file` | Input text file (`-` for stdin) |
 | `-c` | `--clipboard` | Read from `pbpaste` |
@@ -17,27 +17,30 @@ description: Every jmactts flag in one place
 | `-V` | `--version` | Show version |
 | `-h` | `--help` | Show help |
 
+Short and long forms are equivalent (`-v Kyoko` == `--voice Kyoko`).
+
 ## Exit codes
 
 | Code | Meaning |
 |--:|---|
 | `0` | Success |
-| `1` | Runtime error (voice not found, file read failure, `say`/`ffmpeg` error, …) |
-| `2` | Flag parse error or empty input |
-| `130` | Interrupted with `Ctrl-C` (`SIGINT`) |
+| `1` | Runtime error (voice not found / file read failure / `say` or `ffmpeg` error) |
+| `2` | Flag parse error, or empty input |
+| `130` | Interrupted with `Ctrl-C` (SIGINT) |
 
 ## External dependencies
 
-| Command | Purpose | Required |
+| Command | Purpose | Required when |
 |---|---|---|
-| `/usr/bin/say` | Speech synthesis | Yes (built into macOS) |
-| `/usr/bin/pbpaste` | Clipboard read | Only with `-c` |
-| `ffmpeg` | MP3 encoding | Only when outputting MP3 |
+| `/usr/bin/say` | Speech synthesis | Always (built into macOS) |
+| `/usr/bin/pbpaste` | Clipboard read | `-c` is set (built into macOS) |
+| `ffmpeg` | MP3 encoding | `-o *.mp3` is set |
 
-## Help routing
+## stdout / stderr
 
-`-h` / `--help` prints to **stdout**, while usage messages emitted on error go to **stderr**.
+`-h` / `--help` and `-V` / `--version` go to **stdout**; usage messages on error go to **stderr**.
 
 ```bash
-jmactts --help | less       # works because help goes to stdout
+jmactts --help | less          # help goes to stdout, so piping works
+jmactts --version              # stdout
 ```

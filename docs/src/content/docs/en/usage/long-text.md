@@ -5,10 +5,10 @@ description: Automatic chunking for long input and instant Ctrl-C cancellation
 
 ## Automatic chunking
 
-When the input exceeds 1500 runes (live playback only), jmactts splits it at sentence boundaries and feeds chunks to `say` sequentially.
+In playback mode (when `-o` is not given), **input over 1500 runes is split on sentence boundaries** and fed to `say` chunk by chunk. This keeps `say` stable on very long input and makes `Ctrl-C` responsive.
 
 - Boundaries: `。` `．` `.` `!` `?` `！` `？` newline
-- Each chunk includes everything up to the next boundary after reaching ~1500 runes
+- Each chunk extends past 1500 runes until the next boundary
 
 ### Example
 
@@ -16,22 +16,22 @@ When the input exceeds 1500 runes (live playback only), jmactts splits it at sen
 cat long_article.txt | jmactts -L en
 ```
 
-A 5000-rune article ends up split into 3–4 chunks played back in order.
+A 5000-rune article ends up as 3–5 chunks played back in order. A brief silence appears between chunks.
 
-### File output behaviour
+### File output isn't chunked
 
-When writing to a file via `-o`, jmactts **does not chunk**. The entire text is handed to `say` and a single audio file is produced.
+When writing to a file with `-o`, jmactts hands the whole text to `say` and produces a single audio file (chunking would create multiple files).
 
 ## Ctrl-C cancellation
 
-Pressing `Ctrl-C` (`SIGINT`) during playback immediately kills the current chunk's `say` process and stops the loop.
+Pressing `Ctrl-C` (SIGINT) during playback immediately kills the current chunk's `say` process and skips the rest.
 
 - Exit code: **130** (= 128 + SIGINT)
-- `SIGTERM` is handled the same way
+- `SIGTERM` behaves the same way
 
 ### How it works
 
-- A `context.Context` is created via `signal.NotifyContext` and passed to `exec.CommandContext`, so receiving a signal kills `say`
-- Each iteration of the chunk loop checks `ctx.Err()` before proceeding to the next chunk
+- A `context.Context` from `signal.NotifyContext` is passed to `exec.CommandContext`, so receiving a signal kills `say`
+- The chunk loop checks `ctx.Err()` between chunks and exits when canceled
 
-This makes long-running playback stoppable within ~1 second.
+Long-running playback stops within ~1 second.

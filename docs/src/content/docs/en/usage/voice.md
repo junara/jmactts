@@ -3,52 +3,57 @@ title: Voice Selection
 description: Pick a voice by name (-v) or by language/country code (-L)
 ---
 
-`jmactts` lets you pick a voice two ways.
-
-## By voice name (`-v`)
-
-Use any exact name from `say -v ?`.
-
-```bash
-jmactts -v Kyoko こんにちは
-jmactts -v Samantha "Hello, world"
-```
-
-List available voices with `-l`:
-
-```bash
-jmactts -l                # all voices (with sample text)
-jmactts -l -L ja          # Japanese voices only
-```
+`jmactts` lets you pick a voice two ways: `-v` (voice name) and `-L` (language/country code). When both are given, **`-v` wins**.
 
 ## By language/country code (`-L`)
 
-When `-L` is given without `-v`, jmactts auto-picks the primary voice for that language or country.
+Pass `-L` alone and jmactts auto-picks that language's primary voice — you don't need to remember any voice names to switch languages.
 
 ```bash
-jmactts -L ja_JP こんにちは     # full locale
-jmactts -L ja こんにちは         # language code
-jmactts -L JP こんにちは         # country code
-jmactts -L en Hello              # any en_*
+jmactts -L ja_JP こんにちは     # full locale → Kyoko
+jmactts -L ja こんにちは         # language code → Kyoko
+jmactts -L JP こんにちは         # country code → Kyoko
+jmactts -L en "Hello"           # English → Samantha
+jmactts -L en_GB "Cheerio"      # UK English → Daniel
 ```
 
 ### Matching rules
 
-`-L` values are matched in this order:
+`-L` is resolved in this order:
 
-1. `ja_JP` format (contains `_`) → exact locale match
-2. Language code (`ja`, `en`, …) → all `xx_*` matches
-3. If no match, treat as country code (`JP`, `US`, …) and search `*_YY`
+1. **Full locale** (contains `_`, e.g. `ja_JP`) → exact match
+2. **Language code** (`ja`, `en`, …) → all `xx_*` voices
+3. **Country code** (`JP`, `US`, …) → all `*_YY` voices
 
 ### Primary voice heuristic
 
-When multiple voices match, jmactts prefers **names that do NOT contain a parenthesis `(`**.
+When multiple voices match, jmactts prefers **names without a parenthesis `(`**.
 
-macOS conventionally names each language's primary voice without parentheses (e.g. `Kyoko`, `Samantha`, `Daniel`) and parenthesizes secondary/novelty voices (e.g. `Eddy (日本語（日本）)`).
+By macOS convention each language's primary voice (`Kyoko`, `Samantha`, `Daniel`, …) is named without parentheses, while secondary/novelty voices (`Eddy (日本語（日本）)`, …) are parenthesized.
+
+## By voice name (`-v`)
+
+Pass any name listed by `say -v ?`.
+
+```bash
+jmactts -v Kyoko こんにちは
+jmactts -v Samantha "Hello world"
+jmactts -v Otoya こんばんは
+```
+
+## Listing voices
+
+`-l` prints the available voices. Combine with `-L` to filter.
+
+```bash
+jmactts -l                # all voices (with sample text)
+jmactts -l -L ja          # Japanese voices only
+jmactts -l -L en_GB       # UK English voices only
+```
 
 ## Speech rate (`-r`)
 
-`-r` adjusts words per minute.
+`-r` adjusts the speaking rate in words per minute. Default values vary per voice.
 
 ```bash
 jmactts -L en -r 250 "Speak faster"
