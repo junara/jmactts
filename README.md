@@ -1,5 +1,7 @@
 # jmactts
 
+[ドキュメントサイト](https://junara.github.io/jmactts/) | [English](https://junara.github.io/jmactts/en/)
+
 macOS 標準の `say` コマンドをラップした、多言語対応のテキスト読み上げ CLI。
 
 - 引数 / ファイル / 標準入力 / クリップボードから読み上げ
