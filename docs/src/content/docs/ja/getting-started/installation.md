@@ -5,7 +5,7 @@ description: jmactts のインストール手順
 
 ## 必要条件
 
-- macOS (`say` / `pbpaste` / `afconvert` を利用)
+- macOS (`say` / `pbpaste` を利用)
 - `ffmpeg` — MP3 出力時のみ (`brew install ffmpeg`)
 
 ## Homebrew (推奨)

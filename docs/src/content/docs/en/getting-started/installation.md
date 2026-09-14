@@ -5,7 +5,7 @@ description: How to install jmactts
 
 ## Requirements
 
-- macOS (uses `say` / `pbpaste` / `afconvert`)
+- macOS (uses `say` / `pbpaste`)
 - `ffmpeg` — only for MP3 output (`brew install ffmpeg`)
 
 ## Homebrew (recommended)

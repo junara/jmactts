@@ -11,7 +11,7 @@ macOS 標準の `say` コマンドをラップした、多言語対応のテキ�
 
 ## 要件
 
-- macOS (`say` / `pbpaste` / `afconvert` を利用)
+- macOS (`say` / `pbpaste` を利用)
 - `ffmpeg` — MP3 出力時のみ (`brew install ffmpeg`)
 - Go 1.26+ — ソースからビルドする場合のみ
 

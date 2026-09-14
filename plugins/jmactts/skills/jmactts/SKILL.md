@@ -9,7 +9,7 @@ description: macOS の `say` コマンドをラップした多言語テキスト
 
 ## 前提条件
 
-- macOS (`say` / `pbpaste` / `afconvert` を利用)
+- macOS (`say` / `pbpaste` を利用)
 - `jmactts` がインストール済みであること
   - `brew install junara/tap/jmactts` (推奨)
   - もしくは `go install github.com/junara/jmactts@latest`
