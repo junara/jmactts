@@ -1,0 +1,20 @@
+{
+  "name": "jmactts",
+  "description": "Guide skill for jmactts — a macOS multilingual text-to-speech CLI wrapping the `say` command. Covers reading text from arguments / files / stdin / clipboard, automatic voice selection from language codes via -L, and exporting AIFF / WAV / M4A / AAC / MP3 files.",
+  "author": {
+    "name": "junara"
+  },
+  "homepage": "https://junara.github.io/jmactts/",
+  "repository": "https://github.com/junara/jmactts",
+  "license": "MIT",
+  "keywords": [
+    "macos",
+    "say",
+    "tts",
+    "text-to-speech",
+    "speech",
+    "audio",
+    "mp3",
+    "japanese"
+  ]
+}

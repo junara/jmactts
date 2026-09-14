@@ -1,0 +1,14 @@
+{
+  "name": "jmactts",
+  "owner": {
+    "name": "junara"
+  },
+  "description": "Marketplace for the jmactts plugin: a skill that teaches Claude Code how to use jmactts, a macOS multilingual text-to-speech CLI wrapping the say command.",
+  "plugins": [
+    {
+      "name": "jmactts",
+      "source": "./plugins/jmactts",
+      "category": "productivity"
+    }
+  ]
+}
