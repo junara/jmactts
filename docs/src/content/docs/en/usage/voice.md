@@ -13,7 +13,7 @@ Pass `-L` alone and jmactts auto-picks that language's primary voice — you don
 jmactts -L ja_JP こんにちは     # full locale → Kyoko
 jmactts -L ja こんにちは         # language code → Kyoko
 jmactts -L JP こんにちは         # country code → Kyoko
-jmactts -L en "Hello"           # English → Samantha
+jmactts -L en "Hello"           # US English → Albert (see caveat below)
 jmactts -L en_GB "Cheerio"      # UK English → Daniel
 ```
 
@@ -27,9 +27,13 @@ jmactts -L en_GB "Cheerio"      # UK English → Daniel
 
 ### Primary voice heuristic
 
-When multiple voices match, jmactts prefers **names without a parenthesis `(`**.
+When multiple voices match, jmactts picks **the first name without a parenthesis `(` in `say -v ?` order**.
 
-By macOS convention each language's primary voice (`Kyoko`, `Samantha`, `Daniel`, …) is named without parentheses, while secondary/novelty voices (`Eddy (日本語（日本）)`, …) are parenthesized.
+By macOS convention each language's primary voice (`Kyoko`, `Daniel`, …) is named without parentheses, while secondary voices (`Eddy (日本語（日本）)`, …) are parenthesized.
+
+:::caution[US English (`en` / `en_US`)]
+For US English, unparenthesized novelty voices (`Albert`, `Bad News`, …) sort before `Samantha`, so `-L en` selects `Albert`. For a natural voice, pass `-v Samantha` explicitly or use `-L en_GB` (→ `Daniel`).
+:::
 
 ## By voice name (`-v`)
 

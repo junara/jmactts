@@ -19,7 +19,7 @@ jmactts こんにちは 世界
 
 ```bash
 jmactts -L ja こんにちは            # Kyoko で読み上げ
-jmactts -L en "Hello, world"        # Samantha で読み上げ
+jmactts -v Samantha "Hello, world"  # ボイス名で指定 (米国英語)
 jmactts -L en_GB "Good evening"     # Daniel で読み上げ (イギリス英語)
 ```
 

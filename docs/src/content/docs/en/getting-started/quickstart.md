@@ -18,7 +18,7 @@ Spoken with `say`'s default voice (the one configured in System Settings).
 `-L` takes a language or country code and auto-picks that language's primary voice.
 
 ```bash
-jmactts -L en "Hello, world"        # Samantha
+jmactts -v Samantha "Hello, world"  # by voice name (US English)
 jmactts -L en_GB "Good evening"     # Daniel (UK English)
 jmactts -L ja こんにちは            # Kyoko
 ```

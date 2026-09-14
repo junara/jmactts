@@ -13,7 +13,7 @@ description: ボイス名 (-v) と国・言語コード (-L) によるボイス�
 jmactts -L ja_JP こんにちは     # 完全ロケール → Kyoko
 jmactts -L ja こんにちは         # 言語コード → Kyoko
 jmactts -L JP こんにちは         # 国コード → Kyoko
-jmactts -L en "Hello"           # 英語 → Samantha
+jmactts -L en "Hello"           # 米国英語 → Albert (下記の注意を参照)
 jmactts -L en_GB "Cheerio"      # イギリス英語 → Daniel
 ```
 
@@ -27,9 +27,13 @@ jmactts -L en_GB "Cheerio"      # イギリス英語 → Daniel
 
 ### プライマリボイスの選び方
 
-マッチしたボイスが複数ある場合、**名前にカッコ `(` を含まないもの**が優先されます。
+マッチしたボイスが複数ある場合、**名前にカッコ `(` を含まないもののうち `say -v ?` の並び順で先頭のもの**が選ばれます。
 
-macOS では各言語のプライマリボイス (`Kyoko` / `Samantha` / `Daniel` 等) はカッコなしで命名され、補助ボイス (`Eddy (日本語（日本）)` 等) はカッコ付きで命名されているためです。
+macOS では各言語のプライマリボイス (`Kyoko` / `Daniel` 等) はカッコなしで命名され、補助ボイス (`Eddy (日本語（日本）)` 等) はカッコ付きで命名されているためです。
+
+:::caution[英語 (`en` / `en_US`) の注意]
+米国英語はカッコなしのノベルティボイス (`Albert` / `Bad News` 等) が `Samantha` より前に並ぶため、`-L en` では `Albert` が選ばれます。自然な声で読み上げたい場合は `-v Samantha` を指定するか、`-L en_GB` (→ `Daniel`) を使ってください。
+:::
 
 ## ボイス名で直接指定 (`-v`)
 

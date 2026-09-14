@@ -62,7 +62,7 @@ jmactts -c -L ja      # クリップボード内容を日本語ボイスで
 jmactts -L ja_JP こんにちは      # 完全ロケール → Kyoko
 jmactts -L ja こんにちは          # 言語コードのみ → Kyoko
 jmactts -L JP こんにちは          # 国コードのみ → Kyoko
-jmactts -L en "Hello world"       # 英語のプライマリ → Samantha
+jmactts -L en "Hello world"       # 米国英語の先頭ボイス → Albert (後述の注意を参照)
 jmactts -L en_GB "Cheerio"        # イギリス英語 → Daniel
 ```
 
@@ -72,7 +72,9 @@ jmactts -L en_GB "Cheerio"        # イギリス英語 → Daniel
 2. 言語コード (`ja` / `en` 等) → `xx_*` の全マッチ
 3. 国コード (`JP` / `US` 等) → `*_YY` の全マッチ
 
-複数マッチした場合は **ボイス名にカッコ `(` を含まないもの (=プライマリ)** が優先される。
+複数マッチした場合は **ボイス名にカッコ `(` を含まないもののうち `say -v ?` の並び順で先頭のもの** が選ばれる。
+
+**注意 (英語):** `en` / `en_US` / `US` では先頭がノベルティボイスの `Albert` になり、自然な読み上げにならない。英語で自然な声が必要なら `-v Samantha` (米国) か `-L en_GB` (→ `Daniel`) を使う。`ja` (→ `Kyoko`) や `en_GB` はこの問題が無い。
 
 ### ボイス名で指定 (`-v`)
 
@@ -197,7 +199,7 @@ jmactts -L en_GB "Good evening, my dear chap."
 ### 5. ゆっくり再生して聞き取り練習
 
 ```bash
-jmactts -L en -r 130 -f english_passage.txt
+jmactts -v Samantha -r 130 -f english_passage.txt
 ```
 
 ### 6. 利用可能なボイスを確認
