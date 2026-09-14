@@ -31,6 +31,17 @@ go install github.com/junara/jmactts@latest
 go build -o jmactts . && sudo mv jmactts /usr/local/bin/
 ```
 
+## Claude Code プラグイン（skill）
+
+このリポジトリは Claude Code のプラグインマーケットプレイスを兼ねており、`jmactts` の使い方をまとめた skill を配布しています。
+
+```text
+/plugin marketplace add junara/jmactts
+/plugin install jmactts@jmactts
+```
+
+詳細は [ドキュメントサイトのインストール](https://junara.github.io/jmactts/ja/getting-started/installation/#claude-code-プラグイン-skill) を参照してください。
+
 ## クイックスタート
 
 ```sh

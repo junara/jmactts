@@ -41,3 +41,20 @@ sudo mv jmactts /usr/local/bin/
 jmactts --version
 jmactts -L ja こんにちは
 ```
+
+## Claude Code プラグイン (skill)
+
+このリポジトリは Claude Code の**プラグインマーケットプレイス**を兼ねており、`jmactts` の使い方をまとめた skill を配布しています。取り込むと、Claude が入力ソースの選び方や `-L` によるボイス自動選択、`-o` でのファイル出力などを参照して `jmactts` を正しく呼び出せるようになります。
+
+```text
+/plugin marketplace add junara/jmactts
+/plugin install jmactts@jmactts
+```
+
+skill は [`plugins/jmactts/`](https://github.com/junara/jmactts/tree/main/plugins/jmactts) にあり、`.claude-plugin/marketplace.json` がカタログです。
+
+skill を更新するには次を実行します (`/plugin marketplace update` はカタログを更新するだけで、インストール済みの skill は更新されません)。
+
+```text
+/plugin update jmactts@jmactts
+```
